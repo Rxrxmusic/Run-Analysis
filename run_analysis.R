@@ -47,3 +47,5 @@ Final <- Tidy %>%
   group_by(subject, activity) %>%
   summarize_all(list(mean))
 write.table(Final, 'Final.txt', row.names=FALSE)
+
+print(Final)
