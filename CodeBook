@@ -1,0 +1,47 @@
+run_analysis.R performs preparation through dataset downloading/extracting and then follows the 5 steps in the project's instructions:
+
+1. Download dataset
+  Saved in folder "UCI HAR Dataset"
+  
+2. Assign data to variables
+  features <- features.txt
+  the features are from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ.
+  activities <- activity_labels.txt
+  activities performed and their labels
+  subjectTest <- test/subject_test.txt
+  contains test data of 9/30 test subjects
+  xTest <- test/x_test.txt
+  contains recorded features test data
+  yTest <- test/y_test.txt
+  contains test data of activities’ labels
+  subject_train <- test/subject_train.txt
+  contains train data of 21/30 test subjects
+  xTrain <- test/x_train.txt
+  contains recorded features train data
+  yTrain <- test/y_train.txt
+  contains train data of activities’ labels
+
+3. Merge training and test sets to make one data set
+  X is made by merging xTrain and xTest using rbind()
+  Y is made by merging yTrain and yTest using rbind()
+  Subject is made by merging subjectTrain and subjectTest using rbind()
+  Merged is made by merging Subject, Y, and X using cbind()
+
+4. Extract only the measurements on the mean and standard deviation for each measurement
+  Tidy is made by subsetting Merged, selecting only columns subject and code, and of the measurements on the mean and standard deviation.
+  
+5. Use descriptive activity names to name the activities in the data set
+  Numbers in code column of Tidy replaced with matching activity from activities variable
+
+6. Appropriately label data set with descriptive variable names
+  code column in Tidy renamed into activities
+  Acc replaced by Accelerometer
+  Gyro replaced by Gyroscope
+  BodyBody replaced by Body
+  Mag replaced by Magnitude
+  starts with character f replaced by Frequency
+  starts with character t replaced by Time
+
+7. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+  Final is made by sumarizing Tidy, taking the means of each variable after grouping by subject and activity.
+  Export Final into Final.txt file.
